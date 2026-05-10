@@ -36,7 +36,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('get-stats');
+        return redirect()->route('get_stats');
     }
 
     public function showLoginForm(): Factory|View

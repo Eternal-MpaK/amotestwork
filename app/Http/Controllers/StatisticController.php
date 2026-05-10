@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Statistic;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Stevebauman\Location\Facades\Location;
@@ -11,16 +12,15 @@ use Jenssegers\Agent\Agent;
 
 class StatisticController extends Controller
 {
-    public function saveStatistic(Request $request) {
+    public function saveStatistic(Request $request): JsonResponse
+    {
         $agent = new Agent();
         $device = $agent->platform();
         if ($agent->isMobile() || $agent->isTablet()) {
             $device = $agent->device();
         }
 
-        $testIP = '95.78.200.77';
-
-        $position = Location::get($testIP);
+        $position = Location::get($request->ip());
 
         if ($position && $position->cityName) {
             $city = $position->cityName;
@@ -35,7 +35,8 @@ class StatisticController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function getStatistic(Request $request) {
+    public function getStatistic(Request $request): JsonResponse
+    {
         $range = $request->all();
 
 

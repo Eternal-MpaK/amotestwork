@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Тестовое задание №2</title>
+        <title>Тестовое задание №3</title>
         <script src="https://code.jquery.com/jquery-1.8.3.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
@@ -30,7 +30,6 @@
         </div>
 
     </body>
-{{--    <script src="http://amotestwork.test/js/statistic_widget.js"></script>--}}
     <script>
         $(document).ready(function() {
             let from = $("#from")
@@ -41,8 +40,7 @@
 
             from.val(new Date().toISOString().split('T')[0])
             to.val(new Date().toISOString().split('T')[0])
-            console.log(from.val())
-                // const ctx = document.getElementById('lineChart');
+
             let requestStats = function () {
                 $.get(`/api/show_stats?from=${from.val()}&to=${to.val()}`, (res) => {
                     console.log(res)

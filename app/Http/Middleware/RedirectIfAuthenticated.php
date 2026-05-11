@@ -18,9 +18,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                // ✅ Если пользователь уже залогинен — кидаем на дашборд
-                return redirect()->route('dashboard');
-                // Или на главную: return redirect('/');
+                return redirect()->route('/');
             }
         }
 
